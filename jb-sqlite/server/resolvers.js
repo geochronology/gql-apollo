@@ -40,8 +40,8 @@ export const resolvers = {
   },
 
   Job: {
-    company: async (job) => {
-      return await db.select().from('companies').where('id', job.companyId).first();
+    company: async (job, _args, { companyLoader }) => {
+      return await companyLoader.load(job.companyId);
     },
   },
 };
